@@ -48,7 +48,7 @@
     document.getElementById('vendorSuccess').style.display = 'block';
   }
 
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbySk0BatFri5VCi-iu0JeTgoXDOPHcZN9jT2devLzEgQk6BKvG7T8r0KzwJIj-OaBzoiQ/exec';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzIp3WLDok0c187igjmQfJfmgtJ-TMMeLOR1yjLIq-4FaOYtCfkhunibGtPBcbRXDPZHw/exec';
 
   async function saveData(key, entry) {
     try {
