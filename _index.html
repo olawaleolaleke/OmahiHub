@@ -1,65 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Omahi Hub — Your Community Marketplace</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0f0d;
-      --surface: #111a15;
-      --card: #162018;
-      --green: #3bf27a;
-      --green-dim: #1e8a44;
-      --green-glow: rgba(59, 242, 122, 0.18);
-      --text: #e8f0ea;
-      --muted: #6b8a72;
-      --border: rgba(59, 242, 122, 0.12);
+      --bg:        #faf6f0;
+      --bg2:       #f3ece0;
+      --surface:   #ffffff;
+      --amber:     #e8810a;
+      --amber-lt:  #f5a623;
+      --amber-dim: #c46d08;
+      --brown:     #2d1a0e;
+      --brown2:    #4a2c12;
+      --text:      #1e1208;
+      --muted:     #8a6a4a;
+      --border:    rgba(232,129,10,0.15);
+      --glow:      rgba(232,129,10,0.18);
+      --card:      #ffffff;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
 
+    /* Noise texture */
     body::before {
       content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0; opacity: 0.6;
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity: 0.5;
     }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 5vw;
-      background: rgba(10,15,13,0.85);
-      backdrop-filter: blur(14px);
+      padding: 1.1rem 5vw;
+      background: rgba(250,246,240,0.88);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
     .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 1.4rem;
-      color: var(--green); letter-spacing: -0.5px;
+      font-family: 'Fraunces', serif;
+      font-weight: 900; font-size: 1.5rem;
+      color: var(--brown); letter-spacing: -0.5px;
     }
-    .logo span { color: var(--text); }
+    .logo span { color: var(--amber); }
     .nav-cta {
-      background: var(--green); color: #0a0f0d;
-      border: none; padding: 0.55rem 1.3rem;
+      background: var(--amber); color: #fff;
+      border: none; padding: 0.55rem 1.4rem;
       border-radius: 100px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500; font-size: 0.9rem; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600; font-size: 0.88rem; cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px var(--glow);
     }
-    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 24px var(--green-glow); }
+    .nav-cta:hover { background: var(--amber-dim); transform: translateY(-1px); }
 
     /* ── HERO ── */
     .hero {
@@ -67,168 +73,183 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
-      padding: 8rem 5vw 4rem;
+      padding: 9rem 5vw 5rem;
       position: relative;
+      overflow: hidden;
     }
-    .hero::after {
+
+    /* Big decorative circle */
+    .hero::before {
       content: '';
       position: absolute;
-      top: 20%; left: 50%; transform: translateX(-50%);
-      width: 700px; height: 500px;
-      background: radial-gradient(ellipse, rgba(59,242,122,0.10) 0%, transparent 70%);
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,129,10,0.12) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%,-55%);
       pointer-events: none;
     }
 
+    /* Floating blobs */
+    .blob {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; filter: blur(60px);
+    }
+    .blob-1 { width:320px; height:320px; background:rgba(232,129,10,0.08); top:-80px; right:-60px; }
+    .blob-2 { width:250px; height:250px; background:rgba(245,166,35,0.07); bottom:60px; left:-80px; }
+
     .badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(59,242,122,0.1);
-      border: 1px solid var(--border);
-      border-radius: 100px; padding: 0.35rem 1rem;
-      font-size: 0.8rem; font-weight: 500; color: var(--green);
-      margin-bottom: 2rem;
+      background: rgba(232,129,10,0.1);
+      border: 1px solid rgba(232,129,10,0.25);
+      border-radius: 100px; padding: 0.4rem 1.1rem;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--amber); margin-bottom: 2rem;
+      letter-spacing: 0.5px; text-transform: uppercase;
       animation: fadeUp 0.6s ease both;
     }
     .badge-dot {
-      width: 6px; height: 6px; background: var(--green);
+      width: 7px; height: 7px; background: var(--amber);
       border-radius: 50%; animation: pulse 2s infinite;
     }
 
     h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 800; line-height: 1.05;
-      letter-spacing: -2px; max-width: 900px;
-      animation: fadeUp 0.7s 0.1s ease both;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.8rem, 7.5vw, 5.8rem);
+      font-weight: 900; line-height: 1.0;
+      letter-spacing: -2px; max-width: 860px;
+      color: var(--brown);
+      animation: fadeUp 0.65s 0.1s ease both;
     }
     h1 em {
-      font-style: normal; color: var(--green); position: relative;
-    }
-    h1 em::after {
-      content: '';
-      position: absolute; bottom: 2px; left: 0; right: 0; height: 3px;
-      background: var(--green); border-radius: 2px; opacity: 0.5;
+      font-style: italic; color: var(--amber);
+      position: relative; display: inline-block;
     }
 
     .hero-sub {
-      margin-top: 1.5rem;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--muted); max-width: 560px;
-      line-height: 1.7; font-weight: 300;
-      animation: fadeUp 0.7s 0.2s ease both;
+      margin-top: 1.8rem;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--muted); max-width: 520px;
+      line-height: 1.75; font-weight: 400;
+      animation: fadeUp 0.65s 0.2s ease both;
     }
 
     /* ── EMAIL FORM ── */
     .form-wrap {
       margin-top: 3rem;
-      display: flex; flex-direction: column; align-items: center; gap: 1rem;
-      animation: fadeUp 0.7s 0.3s ease both;
+      display: flex; flex-direction: column; align-items: center; gap: 0.9rem;
+      animation: fadeUp 0.65s 0.3s ease both;
+      width: 100%;
     }
     .email-row {
       display: flex;
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: var(--surface);
+      border: 1.5px solid var(--border);
       border-radius: 100px; overflow: hidden;
-      width: min(480px, 90vw);
+      width: min(500px, 92vw);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
       transition: border-color 0.3s, box-shadow 0.3s;
     }
     .email-row:focus-within {
-      border-color: var(--green);
-      box-shadow: 0 0 0 4px var(--green-glow);
+      border-color: var(--amber);
+      box-shadow: 0 0 0 4px var(--glow), 0 4px 24px rgba(0,0,0,0.06);
     }
     .email-row input {
       flex: 1; background: transparent; border: none; outline: none;
-      color: var(--text); font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem; padding: 0.9rem 1.4rem;
+      color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem; padding: 0.95rem 1.5rem;
     }
     .email-row input::placeholder { color: var(--muted); }
     .email-row button {
-      background: var(--green); color: #0a0f0d; border: none;
-      padding: 0.8rem 1.6rem;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700; font-size: 0.9rem; cursor: pointer;
-      border-radius: 100px; margin: 4px;
-      transition: background 0.2s, transform 0.15s; white-space: nowrap;
+      background: var(--amber); color: #fff; border: none;
+      padding: 0.8rem 1.6rem; border-radius: 100px; margin: 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700; font-size: 0.88rem; cursor: pointer;
+      white-space: nowrap; transition: all 0.2s;
     }
-    .email-row button:hover { background: #5fffa0; transform: scale(1.03); }
-    .form-note { font-size: 0.78rem; color: var(--muted); }
+    .email-row button:hover { background: var(--amber-dim); transform: scale(1.02); }
+    .form-note { font-size: 0.77rem; color: var(--muted); }
 
     .success-msg {
       display: none; align-items: center; gap: 0.6rem;
-      background: rgba(59,242,122,0.12);
-      border: 1px solid rgba(59,242,122,0.3);
-      border-radius: 100px; padding: 0.7rem 1.5rem;
-      font-size: 0.9rem; color: var(--green); font-weight: 500;
+      background: rgba(232,129,10,0.1);
+      border: 1px solid rgba(232,129,10,0.3);
+      border-radius: 100px; padding: 0.75rem 1.6rem;
+      font-size: 0.9rem; color: var(--amber); font-weight: 600;
     }
 
     .social-proof {
-      margin-top: 3.5rem;
-      display: flex; align-items: center; gap: 1rem;
-      animation: fadeUp 0.7s 0.45s ease both;
+      margin-top: 3rem; display: flex; align-items: center; gap: 1.1rem;
+      animation: fadeUp 0.65s 0.45s ease both;
     }
     .avatars { display: flex; }
     .avatars span {
-      width: 34px; height: 34px; border-radius: 50%;
-      border: 2px solid var(--bg);
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 2.5px solid var(--bg);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem; font-weight: 600;
-      margin-left: -10px; color: #0a0f0d;
+      font-size: 0.75rem; font-weight: 700; margin-left: -11px; color: #fff;
     }
     .avatars span:first-child { margin-left: 0; }
     .proof-text { font-size: 0.85rem; color: var(--muted); }
-    .proof-text strong { color: var(--text); }
+    .proof-text strong { color: var(--brown); }
 
     /* ── MARQUEE ── */
     .marquee-wrap {
       width: 100%; overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 0; background: var(--surface);
+      background: var(--amber);
+      padding: 0.9rem 0;
     }
     .marquee-track {
-      display: flex; gap: 3rem;
-      animation: marquee 22s linear infinite; white-space: nowrap;
+      display: flex; gap: 2.5rem;
+      animation: marquee 20s linear infinite; white-space: nowrap;
     }
     .marquee-item {
       display: flex; align-items: center; gap: 0.6rem;
-      font-size: 0.85rem; color: var(--muted);
-      font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+      font-size: 0.82rem; color: rgba(255,255,255,0.85);
+      font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
     }
-    .marquee-item svg { color: var(--green); flex-shrink: 0; }
+    .marquee-item .dot { width: 5px; height: 5px; background: rgba(255,255,255,0.5); border-radius: 50%; }
 
     /* ── HOW IT WORKS ── */
     .how {
-      padding: 6rem 5vw;
-      max-width: 1100px; margin: 0 auto;
+      padding: 7rem 5vw;
+      background: var(--bg2);
     }
+    .how-inner { max-width: 1100px; margin: 0 auto; }
     .section-label {
-      font-size: 0.75rem; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--green);
-      font-weight: 600; margin-bottom: 1rem;
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 2.5px; color: var(--amber);
+      font-weight: 700; margin-bottom: 1rem;
     }
     .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
       font-weight: 800; letter-spacing: -1px;
-      max-width: 560px; line-height: 1.15;
-      margin-bottom: 3.5rem;
+      max-width: 540px; line-height: 1.15;
+      margin-bottom: 3.5rem; color: var(--brown);
     }
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 2rem;
     }
-    .step { display: flex; flex-direction: column; gap: 0.8rem; }
-    .step-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 3.5rem; font-weight: 800;
-      color: var(--border); line-height: 1;
+    .step {
+      background: var(--surface);
+      border-radius: 20px; padding: 2rem;
+      border: 1px solid rgba(232,129,10,0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
-    .step h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; }
-    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(232,129,10,0.1); }
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem; font-weight: 900;
+      color: rgba(232,129,10,0.18); line-height: 1; margin-bottom: 1rem;
+    }
+    .step h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--brown); }
+    .step p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; }
 
     /* ── VENDOR SECTION ── */
     .vendor-section {
-      padding: 3rem 5vw 6rem;
+      padding: 5rem 5vw 7rem;
       max-width: 1100px; margin: 0 auto;
     }
     .vendor-wrap {
@@ -236,158 +257,151 @@
       grid-template-columns: 1fr 1.4fr;
       gap: 4rem; align-items: start;
     }
+    .vendor-left .section-title { margin-bottom: 1.5rem; }
     .vendor-left p {
-      color: var(--muted); line-height: 1.75;
-      font-size: 0.95rem; margin-bottom: 1.5rem; font-weight: 300;
+      color: var(--muted); line-height: 1.8;
+      font-size: 0.95rem; margin-bottom: 1.4rem; font-weight: 400;
     }
     .cat-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
     .chip {
-      background: rgba(59,242,122,0.08);
-      color: var(--green);
-      border: 1px solid var(--border);
+      background: rgba(232,129,10,0.08);
+      color: var(--amber);
+      border: 1px solid rgba(232,129,10,0.2);
       border-radius: 100px; padding: 0.3rem 0.9rem;
-      font-size: 0.78rem; font-weight: 500;
+      font-size: 0.78rem; font-weight: 600;
     }
 
-    /* Vendor form card */
+    /* Vendor card */
     .vendor-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px; padding: 2.2rem;
+      background: var(--surface);
+      border: 1.5px solid rgba(232,129,10,0.15);
+      border-radius: 24px; padding: 2.4rem;
+      box-shadow: 0 8px 40px rgba(232,129,10,0.08);
     }
     .vendor-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.25rem; font-weight: 800;
-      margin-bottom: 0.3rem; color: var(--text);
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem; font-weight: 800;
+      margin-bottom: 0.3rem; color: var(--brown);
     }
     .vendor-card .sub { font-size: 0.83rem; color: var(--muted); margin-bottom: 1.8rem; }
 
     .field { margin-bottom: 1.2rem; }
     .field label {
-      display: block; font-size: 0.72rem; font-weight: 600;
+      display: block; font-size: 0.7rem; font-weight: 700;
       text-transform: uppercase; letter-spacing: 1px;
       color: var(--muted); margin-bottom: 0.45rem;
     }
-    .field input, .field select {
-      width: 100%; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 10px;
-      padding: 0.75rem 1rem; color: var(--text);
-      font-family: 'DM Sans', sans-serif; font-size: 0.93rem;
+    .field input, .field select, .field textarea {
+      width: 100%; background: var(--bg);
+      border: 1.5px solid rgba(0,0,0,0.08); border-radius: 12px;
+      padding: 0.8rem 1rem; color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.92rem;
       outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-      appearance: none;
     }
-    .field input::placeholder { color: var(--muted); }
-    .field input:focus, .field select:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px var(--green-glow);
+    .field input::placeholder, .field textarea::placeholder { color: var(--muted); }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px var(--glow);
     }
+    .field textarea { resize: vertical; min-height: 80px; }
     .field select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b8a72' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a6a4a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 1rem center;
-      background-color: var(--surface);
-      padding-right: 2.5rem; cursor: pointer;
+      padding-right: 2.5rem;
     }
-    .field select option { background: var(--surface); color: var(--text); }
-
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
-    .cat-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.45rem;
-    }
+    .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.45rem; }
     .cat-item {
       display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      border: 1px solid var(--border);
-      border-radius: 8px; cursor: pointer;
+      padding: 0.55rem 0.75rem;
+      border: 1.5px solid rgba(0,0,0,0.08);
+      border-radius: 10px; cursor: pointer;
       font-size: 0.82rem; color: var(--muted);
-      transition: border-color 0.15s, background 0.15s, color 0.15s;
-      user-select: none;
+      transition: all 0.15s; user-select: none;
     }
-    .cat-item:hover { border-color: var(--green-dim); color: var(--text); }
-    .cat-item.selected {
-      border-color: var(--green);
-      background: rgba(59,242,122,0.08);
-      color: var(--green);
-    }
+    .cat-item:hover { border-color: var(--amber-lt); color: var(--brown); }
+    .cat-item.selected { border-color: var(--amber); background: rgba(232,129,10,0.07); color: var(--amber); font-weight: 600; }
     .cat-check {
-      width: 15px; height: 15px; border: 1px solid var(--muted);
+      width: 16px; height: 16px; border: 1.5px solid rgba(0,0,0,0.15);
       border-radius: 4px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.6rem; transition: background 0.15s, border-color 0.15s;
+      font-size: 0.6rem; transition: all 0.15s;
     }
-    .cat-item.selected .cat-check { background: var(--green); border-color: var(--green); color: #0a0f0d; }
+    .cat-item.selected .cat-check { background: var(--amber); border-color: var(--amber); color: #fff; }
 
     .submit-btn {
-      width: 100%; background: var(--green); color: #0a0f0d;
-      border: none; padding: 0.95rem;
+      width: 100%; background: var(--amber); color: #fff;
+      border: none; padding: 1rem;
       border-radius: 100px;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700; font-size: 0.95rem; cursor: pointer;
       margin-top: 1.4rem;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      transition: all 0.2s;
+      box-shadow: 0 6px 24px var(--glow);
     }
-    .submit-btn:hover {
-      background: #5fffa0; transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--green-glow);
-    }
+    .submit-btn:hover { background: var(--amber-dim); transform: translateY(-2px); box-shadow: 0 10px 32px var(--glow); }
 
-    .vendor-success { display: none; text-align: center; padding: 2rem 1rem; }
-    .vendor-success .big-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .vendor-success h3 {
-      font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;
-    }
-    .vendor-success p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+    .vendor-success { display: none; text-align: center; padding: 2.5rem 1rem; }
+    .vendor-success .big-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+    .vendor-success h3 { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--brown); }
+    .vendor-success p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
 
     /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 5vw;
+      background: var(--brown);
+      padding: 2.5rem 5vw;
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1rem;
     }
-    footer .logo { font-size: 1.1rem; }
-    footer p { font-size: 0.8rem; color: var(--muted); }
+    footer .logo { color: #fff; }
+    footer .logo span { color: var(--amber-lt); }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
 
     /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+    @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
 
+    /* ── MOBILE ── */
     @media (max-width: 860px) {
-      .vendor-wrap { grid-template-columns: 1fr; }
+      .vendor-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
     }
     @media (max-width: 600px) {
+      h1 { letter-spacing: -1px; }
+      .email-row { flex-direction: column; border-radius: 16px; overflow: visible; background: transparent; border: none; box-shadow: none; gap: 0.6rem; }
+      .email-row input { border: 1.5px solid var(--border); border-radius: 100px; padding: 0.9rem 1.4rem; background: var(--surface); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+      .email-row input:focus { border-color: var(--amber); box-shadow: 0 0 0 3px var(--glow); }
+      .email-row button { border-radius: 100px; padding: 0.9rem; width: 100%; margin: 0; }
       .social-proof { flex-direction: column; text-align: center; }
       .field-row { grid-template-columns: 1fr; }
       .cat-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; text-align: center; }
+      .nav-cta { font-size: 0.78rem; padding: 0.5rem 1rem; }
+      .vendor-card { padding: 1.5rem; }
+    }
+    @media (max-width: 380px) {
+      .nav-cta { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">Omahi <span>Hub</span></div>
-  <button class="nav-cta" onclick="document.getElementById('vendor').scrollIntoView({behavior:'smooth'})">Register as Vendor</button>
+  <button class="nav-cta" onclick="document.getElementById('vendor').scrollIntoView({behavior:'smooth'})">Become a Vendor</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="badge"><span class="badge-dot"></span> Launching Soon</div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="badge"><span class="badge-dot"></span> Launching Soon in Ibadan</div>
   <h1>The market that brings<br>everything <em>closer</em> to you</h1>
-  <p class="hero-sub">
-    Omahi Hub connects buyers and sellers — from campus stalls to city shops. Discover trusted vendors near you, or grow your business beyond your corner.
-  </p>
+  <p class="hero-sub">Omahi Hub connects buyers and sellers — from campus stalls to city shops. Discover trusted vendors near you, or grow your business beyond your corner.</p>
 
   <div class="form-wrap" id="signup">
     <div class="email-row" id="emailRow">
@@ -403,49 +417,48 @@
 
   <div class="social-proof">
     <div class="avatars">
-      <span style="background:#3bf27a">AK</span>
-      <span style="background:#5fffa0">BM</span>
-      <span style="background:#2dd46a">CT</span>
-      <span style="background:#1eb855">DF</span>
+      <span style="background:#e8810a">AK</span>
+      <span style="background:#c46d08">BM</span>
+      <span style="background:#f5a623">CT</span>
+      <span style="background:#2d1a0e">DF</span>
     </div>
     <p class="proof-text">Join <strong>early supporters</strong> already waiting for launch</p>
   </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
-<!-- HOW IT WORKS -->
 <section class="how reveal">
-  <p class="section-label">How It Works</p>
-  <h2 class="section-title">Simple for buyers. Powerful for sellers.</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h3>Vendors Register</h3>
-      <p>Sellers sign up, list their products and set their location — campus stall or city shop, we cover both.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h3>Buyers Discover</h3>
-      <p>Browse listings nearby, filter by category, and find exactly what you need close to you.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h3>Connect & Close</h3>
-      <p>Message sellers, arrange pickup or delivery, and leave reviews to build community trust.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <h3>Grow Together</h3>
-      <p>Vendors expand from campus to city. Buyers always find the best deals near them.</p>
+  <div class="how-inner">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Simple for buyers.<br>Powerful for sellers.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Vendors Register</h3>
+        <p>Sellers sign up, list products and set their location — campus stall or city shop, we cover both.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Buyers Discover</h3>
+        <p>Browse listings nearby, filter by category, and find exactly what you need close to you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Connect & Close</h3>
+        <p>Message sellers, arrange pickup or delivery, and leave reviews to build community trust.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Grow Together</h3>
+        <p>Vendors expand from campus to city. Buyers always find the best deals near them.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- VENDOR REGISTRATION -->
 <section class="vendor-section reveal" id="vendor">
   <div class="vendor-wrap">
     <div class="vendor-left">
@@ -455,7 +468,7 @@
       <p>We're onboarding early vendors across these categories:</p>
       <div class="cat-chips">
         <span class="chip">🍱 Food & Drinks</span>
-        <span class="chip">📚 Books & Stationery</span>
+        <span class="chip">📚 Books</span>
         <span class="chip">💻 Electronics</span>
         <span class="chip">👗 Fashion</span>
         <span class="chip">💆 Services</span>
@@ -469,12 +482,10 @@
       <div id="vendorFormInner">
         <h3>Vendor Registration</h3>
         <p class="sub">Fill in your details — takes less than 2 minutes</p>
-
         <div class="field">
           <label>Full Name</label>
           <input type="text" id="vName" placeholder="e.g. Amaka Johnson"/>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label>Phone Number</label>
@@ -485,24 +496,14 @@
             <input type="email" id="vEmail" placeholder="you@email.com"/>
           </div>
         </div>
-
         <div class="field">
           <label>Shop / Business Name</label>
           <input type="text" id="vShop" placeholder="e.g. Amaka's Kitchen"/>
         </div>
-
         <div class="field">
-          <label>Location Type</label>
-          <select id="vLocation">
-            <option value="">— Select your location type —</option>
-            <option value="campus-stall">Campus Stall / Kiosk</option>
-            <option value="campus-room">Campus Room / Hostel</option>
-            <option value="city-shop">City Shop / Store</option>
-            <option value="online-only">Online / Delivery Only</option>
-            <option value="market">Open Market</option>
-          </select>
+          <label>Business Address</label>
+          <textarea id="vLocation" placeholder="e.g. UI Campus, Gate area / 12 Bodija Market, Ibadan"></textarea>
         </div>
-
         <div class="field">
           <label>Product Categories <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">(select all that apply)</span></label>
           <div class="cat-grid">
@@ -516,42 +517,29 @@
             <div class="cat-item" onclick="toggleCat(this)" data-val="creatives"><span class="cat-check">✓</span> 📸 Creative Services</div>
           </div>
         </div>
-
         <button class="submit-btn" onclick="handleVendor()">Register as a Vendor →</button>
       </div>
-
       <div class="vendor-success" id="vendorSuccess">
         <div class="big-icon">🎉</div>
         <h3>You're registered!</h3>
-        <p>Thanks for signing up as an Omahi Hub vendor. We'll reach out soon with your early access invite and onboarding details.</p>
+        <p>Thanks for signing up as an Omahi Hub vendor. We'll reach out soon with your early access invite.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="logo">Omahi <span>Hub</span></div>
   <p>© 2026 Omahi Hub · Bringing the market closer to you</p>
 </footer>
 
 <script>
-  // Marquee
-  const items = [
-    "Food & Drinks","Electronics","Fashion","Books","Services","Housing",
-    "General Goods","Creatives","Tutoring","Photography","Gadgets","Clothing",
-    "Food & Drinks","Electronics","Fashion","Books","Services","Housing",
-    "General Goods","Creatives","Tutoring","Photography","Gadgets","Clothing"
-  ];
+  const items = ["Food & Drinks","Electronics","Fashion","Books","Services","Housing","General Goods","Creatives","Tutoring","Photography","Gadgets","Clothing","Food & Drinks","Electronics","Fashion","Books","Services","Housing","General Goods","Creatives","Tutoring","Photography","Gadgets","Clothing"];
   const track = document.getElementById('marqueeTrack');
   items.forEach(item => {
-    track.innerHTML += `<span class="marquee-item">
-      <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
-      ${item}
-    </span>`;
+    track.innerHTML += `<span class="marquee-item"><span class="dot"></span>${item}</span>`;
   });
 
-  // Buyer signup
   function handleSignup() {
     const email = document.getElementById('emailInput').value.trim();
     if (!email || !email.includes('@')) { document.getElementById('emailInput').focus(); return; }
@@ -561,53 +549,34 @@
   }
   document.getElementById('emailInput').addEventListener('keydown', e => { if(e.key==='Enter') handleSignup(); });
 
-  // Category toggle
   function toggleCat(el) { el.classList.toggle('selected'); }
 
-  // Vendor submit
   function handleVendor() {
     const name = document.getElementById('vName').value.trim();
     const phone = document.getElementById('vPhone').value.trim();
     const email = document.getElementById('vEmail').value.trim();
     const shop = document.getElementById('vShop').value.trim();
-    const location = document.getElementById('vLocation').value;
+    const location = document.getElementById('vLocation').value.trim();
     const cats = [...document.querySelectorAll('.cat-item.selected')].map(el => el.dataset.val);
-
-    if (!name || !phone || !email || !shop || !location) {
-      alert('Please fill in all fields before submitting.');
-      return;
-    }
-    if (cats.length === 0) {
-      alert('Please select at least one product category.');
-      return;
-    }
+    if (!name || !phone || !email || !shop || !location) { alert('Please fill in all fields.'); return; }
+    if (cats.length === 0) { alert('Please select at least one category.'); return; }
     saveData('vendors', { name, phone, email, shop, location, categories: cats, date: new Date().toISOString() });
     document.getElementById('vendorFormInner').style.display = 'none';
     document.getElementById('vendorSuccess').style.display = 'block';
   }
 
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbySk0BatFri5VCi-iu0JeTgoXDOPHcZN9jT2devLzEgQk6BKvG7T8r0KzwJIj-OaBzoiQ/exec';
-
-  async function saveData(key, entry) {
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type: key, ...entry })
-      });
-      console.log('[Omahi Hub] Sent to Google Sheets:', key, entry);
-    } catch (err) {
-      console.error('[Omahi Hub] Failed to send:', err);
-    }
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzIp3WLDok0c187igjmQfJfmgtJ-TMMeLOR1yjLIq-4FaOYtCfkhunibGtPBcbRXDPZHw/exec';
+  function saveData(type, entry) {
+    const params = new URLSearchParams({ type, ...entry });
+    if (entry.categories) params.set('categories', entry.categories.join(', '));
+    const img = new Image();
+    img.src = `${SHEET_URL}?${params.toString()}`;
   }
 
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => observer.observe(el));
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

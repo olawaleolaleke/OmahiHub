@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Omahi Hub — Your Community Marketplace</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">Omahi <span>Hub</span></div>
-  <button class="nav-cta" onclick="document.getElementById('vendor').scrollIntoView({behavior:'smooth'})">Register as Vendor</button>
+  <button class="nav-cta" onclick="document.getElementById('vendor').scrollIntoView({behavior:'smooth'})">Become a Vendor</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
   <div class="badge"><span class="badge-dot"></span> Launching Soon</div>
-  <h1>The market that brings<br>everything <em>closer</em> to you</h1>
-  <p class="hero-sub">
-    Omahi Hub connects buyers and sellers — from campus stalls to city shops. Discover trusted vendors near you, or grow your business beyond your corner.
-  </p>
+  <h1>The marketplace that brings<br>everything <em>closer</em> to you</h1>
+  <p class="hero-sub">Omahi Hub connects buyers and sellers — from campus stalls to city shops. Discover trusted vendors near you, or grow your business beyond your corner.</p>
 
   <div class="form-wrap" id="signup">
     <div class="email-row" id="emailRow">
@@ -37,49 +35,48 @@
 
   <div class="social-proof">
     <div class="avatars">
-      <span style="background:#3bf27a">AK</span>
-      <span style="background:#5fffa0">BM</span>
-      <span style="background:#2dd46a">CT</span>
-      <span style="background:#1eb855">DF</span>
+      <span style="background:#e8810a">AK</span>
+      <span style="background:#c46d08">BM</span>
+      <span style="background:#f5a623">CT</span>
+      <span style="background:#2d1a0e">DF</span>
     </div>
     <p class="proof-text">Join <strong>early supporters</strong> already waiting for launch</p>
   </div>
 </section>
 
-<!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
-<!-- HOW IT WORKS -->
 <section class="how reveal">
-  <p class="section-label">How It Works</p>
-  <h2 class="section-title">Simple for buyers. Powerful for sellers.</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h3>Vendors Register</h3>
-      <p>Sellers sign up, list their products and set their location — campus stall or city shop, we cover both.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h3>Buyers Discover</h3>
-      <p>Browse listings nearby, filter by category, and find exactly what you need close to you.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h3>Connect & Close</h3>
-      <p>Message sellers, arrange pickup or delivery, and leave reviews to build community trust.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <h3>Grow Together</h3>
-      <p>Vendors expand from campus to city. Buyers always find the best deals near them.</p>
+  <div class="how-inner">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Simple for buyers.<br>Powerful for sellers.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Vendors Register</h3>
+        <p>Sellers sign up, list products and set their location — campus stall or city shop, we cover both.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Buyers Discover</h3>
+        <p>Browse listings nearby, filter by category, and find exactly what you need close to you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Secure Payments</h3>
+        <p>Pay safely through our secure payment gateway. Every transaction is protected, ensuring a trusted a experience.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Connect & Close</h3>
+        <p>Message sellers, arrange pickup or delivery, complete your order, and leave reviews to help build community trust.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- VENDOR REGISTRATION -->
 <section class="vendor-section reveal" id="vendor">
   <div class="vendor-wrap">
     <div class="vendor-left">
@@ -89,7 +86,7 @@
       <p>We're onboarding early vendors across these categories:</p>
       <div class="cat-chips">
         <span class="chip">🍱 Food & Drinks</span>
-        <span class="chip">📚 Books & Stationery</span>
+        <span class="chip">📚 Books</span>
         <span class="chip">💻 Electronics</span>
         <span class="chip">👗 Fashion</span>
         <span class="chip">💆 Services</span>
@@ -103,12 +100,10 @@
       <div id="vendorFormInner">
         <h3>Vendor Registration</h3>
         <p class="sub">Fill in your details — takes less than 2 minutes</p>
-
         <div class="field">
           <label>Full Name</label>
           <input type="text" id="vName" placeholder="e.g. Amaka Johnson"/>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label>Phone Number</label>
@@ -119,24 +114,14 @@
             <input type="email" id="vEmail" placeholder="you@email.com"/>
           </div>
         </div>
-
         <div class="field">
           <label>Shop / Business Name</label>
           <input type="text" id="vShop" placeholder="e.g. Amaka's Kitchen"/>
         </div>
-
         <div class="field">
-          <label>Location Type</label>
-          <select id="vLocation">
-            <option value="">— Select your location type —</option>
-            <option value="campus-stall">Campus Stall / Kiosk</option>
-            <option value="campus-room">Campus Room / Hostel</option>
-            <option value="city-shop">City Shop / Store</option>
-            <option value="online-only">Online / Delivery Only</option>
-            <option value="market">Open Market</option>
-          </select>
+          <label>Business Address</label>
+          <textarea id="vLocation" placeholder="e.g. Shop 24 Fuhsi Market, Fuhsi Permanent Site, Ila Orangun"></textarea>
         </div>
-
         <div class="field">
           <label>Product Categories <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0">(select all that apply)</span></label>
           <div class="cat-grid">
@@ -150,20 +135,17 @@
             <div class="cat-item" onclick="toggleCat(this)" data-val="creatives"><span class="cat-check">✓</span> 📸 Creative Services</div>
           </div>
         </div>
-
         <button class="submit-btn" onclick="handleVendor()">Register as a Vendor →</button>
       </div>
-
       <div class="vendor-success" id="vendorSuccess">
         <div class="big-icon">🎉</div>
         <h3>You're registered!</h3>
-        <p>Thanks for signing up as an Omahi Hub vendor. We'll reach out soon with your early access invite and onboarding details.</p>
+        <p>Thanks for signing up as an Omahi Hub vendor. We'll reach out soon with your early access invite.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="logo">Omahi <span>Hub</span></div>
   <p>© 2026 Omahi Hub · Bringing the market closer to you</p>
